@@ -1,0 +1,98 @@
+<div class="container mt-4">
+  <form class="form" [formGroup]="imageForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="image" class="form-label">Image</label>
+      <input
+        type="file"
+        id="image"
+        class="form-control"
+        formControlName="image"
+        accept="image/*"
+        (change)="onFileChange($event)"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="animation" class="form-label">Animation</label>
+      <select class="form-select" id="animation" formControlName="animation">
+        <option value="">Select Animation</option>
+        <option value="slide-in-from-top">Slide In From Top</option>
+        <option value="zoom-in-from-bottom">Zoom In From Bottom</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="imageSize" class="form-label">Image Size</label>
+      <input
+        type="text"
+        id="imageSize"
+        class="form-control"
+        formControlName="imageSize"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="containerWidth" class="form-label">Container Width</label>
+      <input
+        type="text"
+        id="containerWidth"
+        class="form-control"
+        formControlName="containerWidth"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="containerHeight" class="form-label">Container Height</label>
+      <input
+        type="text"
+        id="containerHeight"
+        class="form-control"
+        formControlName="containerHeight"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="imagePositionX" class="form-label">Image Position X</label>
+      <input
+        type="text"
+        id="imagePositionX"
+        class="form-control"
+        formControlName="imagePositionX"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="imagePositionY" class="form-label">Image Position Y</label>
+      <input
+        type="text"
+        id="imagePositionY"
+        class="form-control"
+        formControlName="imagePositionY"
+      />
+    </div>
+
+    <div class="mb-3 form-check">
+      <input
+        type="checkbox"
+        id="useImageContainer"
+        class="form-check-input"
+        formControlName="useImageContainer"
+      />
+      <label for="useImageContainer" class="form-check-label"
+        >Use Image Container</label
+      >
+    </div>
+
+    <div *ngIf="previewUrl" class="mb-3">
+      <label class="form-label">Preview:</label>
+      <img
+        [src]="previewUrl"
+        alt="Preview Image"
+        class="img-thumbnail"
+        [style]="getAnimationStyle(imageForm.get('animation')?.value)"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Download HTML File</button>
+  </form>
+</div>
